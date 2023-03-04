@@ -1784,7 +1784,12 @@ if (strategy_code == 6) {
 		}	
 	}
 	if(location_num==2){
-	
+	// 设置一个虚拟的终点，2000已经很大
+		double x_of = 2000;
+		double y_of = v_group*x_of+y_oc-v_group*x_oc;
+		
+		
+		
 	}
 	
 	
