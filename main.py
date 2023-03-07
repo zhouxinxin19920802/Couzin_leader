@@ -181,8 +181,7 @@ f.close()
 print("resilience_value:", r)
 
 print(delta_l ** (len(data_resilience) / B))
-#
-# #
+
 # plt.plot(data_resilience, label="raw")
 # plt.plot(data_resilience_sg, color="r", ls="--", label="smoothed")
 # plt.legend()

@@ -628,19 +628,21 @@ print("improved_resilience12:{}\t".format(resilience12_improved))
 plt.subplot2grid((3, 2), (0, 0), colspan=2)
 
 
-plt.plot(t_case1, y_t1, marker="d", color="c", ls="-", lw=0.0005, label="case1 k2=25")
-plt.plot(t_case1, y_t2, marker="d", color="g", ls="-", lw=0.0005, label="case2 k2=30")
-plt.plot(t_case1, y_t3, marker="d", color="b", ls="-", lw=0.005, label="case3 k2=35")
-plt.plot(t_case1, y_t4, marker="d", color="m", ls="-", lw=0.0005, label="case4 k2=40")
-plt.plot(t_case1, y_t5, marker="d", color="y", ls="-", lw=0.0005, label="case5 k2=45")
-plt.plot(t_case1, y_t6, marker="d", color="k", ls="-", lw=0.0005, label="case6 k2=50")
+plt.plot(t_case1, y_t1, marker="d", markersize=0.1, color="c", ls="-", linewidth=0.000001, label="case1 k2=25")
+plt.plot(t_case1, y_t2, marker="d", markersize=0.1, color="g", ls="-", linewidth=0.000001, label="case2 k2=30")
+plt.plot(t_case1, y_t3, marker="d", markersize=0.1, color="b", ls="-", linewidth=0.000001, label="case3 k2=35")
+plt.plot(t_case1, y_t4, marker="d", markersize=0.1, color="m", ls="-", linewidth=0.000001, label="case4 k2=40")
+plt.plot(t_case1, y_t5, marker="d", markersize=0.1, color="y", ls="-", linewidth=0.000001, label="case5 k2=45")
+plt.plot(t_case1, y_t6, marker="d", markersize=0.1, color="k", ls="-", linewidth=0.000001, label="case6 k2=50")
 # case 2
-plt.plot(t_case2, y_t7, marker="d", color="r", ls="-", label="case7 k2=25")
-plt.plot(t_case2, y_t8, marker="d", color="brown", lw=0.005, ls="-", label="case8 k2=30")
-plt.plot(t_case2, y_t9, marker="d", color="salmon", lw=0.005, ls="-", label="case9 k2=35")
-plt.plot(t_case2, y_t10, marker="d", color="deepskyblue", lw=0.005, ls="-", label="case10 k2=40")
-plt.plot(t_case2, y_t11, marker="d", color="orchid", lw=0.005, ls="-", label="case11 k2=45")
-plt.plot(t_case2, y_t12, marker="d", color="pink", lw=0.005, ls="-", label="case12 k2=50")
+plt.plot(t_case2, y_t7, marker="d", markersize=0.1, color="r", ls="-", linewidth=0.000001, label="case7 k2=25")
+plt.plot(t_case2, y_t8, marker="d", markersize=0.1, color="brown", linewidth=0.000001, ls="-", label="case8 k2=30")
+plt.plot(t_case2, y_t9, marker="d", markersize=0.1, color="salmon", linewidth=0.0001, ls="-", label="case9 k2=35")
+plt.plot(
+    t_case2, y_t10, marker="d", markersize=0.1, color="deepskyblue", linewidth=0.000001, ls="-", label="case10 k2=40"
+)
+plt.plot(t_case2, y_t11, marker="d", markersize=0.1, color="orchid", linewidth=0.000001, ls="-", label="case11 k2=45")
+plt.plot(t_case2, y_t12, marker="d", markersize=0.1, color="pink", linewidth=0.000001, ls="-", label="case12 k2=50")
 
 ax = plt.gca()
 ax.spines["right"].set_color("none")
@@ -649,51 +651,51 @@ ax.spines["top"].set_color("none")
 
 # plt.plot(t_case2,np.ones(len(t_case2))*task_value,marker="d",linewidth=0.005)
 
-plt.legend(loc="lower center", ncol=3)
-plt.xticks(np.arange(0, 210, 50))
-plt.yticks(np.arange(0, 70, 10))
+plt.legend(loc="lower center", ncol=3, fontsize=6)
+plt.xticks(np.arange(0, 210, 50), fontsize=8)
+plt.yticks(np.arange(0, 70, 10), fontsize=8)
 
 
-# # 图2中，红色为1-6
-plt.subplot2grid((3, 2), (1, 0))
-
-case1_mark_num = [25, 30, 35, 40, 45, 50]
-cas1_resilience_cons = [resilience1, resilience2, resilience3, resilience4, resilience5, resilience6]
-cas2_resilience_cons = [resilience7, resilience8, resilience9, resilience10, resilience11, resilience12]
-
-plt.plot(case1_mark_num, cas1_resilience_cons, marker="d", color="r", lw=0.01, label="resilience_case1")
-
-plt.scatter(case1_mark_num, cas1_resilience_cons, c="r", label="resilience_case1")
-plt.scatter(case1_mark_num, cas2_resilience_cons, c="b",label="resilience_case2")
-plt.xticks(np.arange(20, 55, 5))
-plt.yticks(np.arange(0, 1.5, 0.2))
-plt.legend()
-
-# 第三张图
-plt.subplot2grid((3, 2), (2, 0), colspan=2)
-
-cas1_resilience_cons_improved = [
-    resilience1_improved,
-    resilience2_improved,
-    resilience3_improved,
-    resilience4_improved,
-    resilience5_improved,
-    resilience6_improved,
-]
-cas2_resilience_cons_improved = [
-    resilience7_improved,
-    resilience8_improved,
-    resilience9_improved,
-    resilience10_improved,
-    resilience11_improved,
-    resilience12_improved,
-]
-
-
-plt.scatter(case1_mark_num, cas1_resilience_cons_improved, c="r", label="resilience_case1")
-plt.scatter(case1_mark_num, cas2_resilience_cons_improved, c="b", label="resilience_case2")
-plt.xticks(np.arange(20, 55, 5))
-plt.yticks(np.arange(0, 1.5, 0.2))
+# # # 图2中，红色为1-6
+# plt.subplot2grid((3, 2), (1, 0),colspan=2)
+#
+# case1_mark_num = [25, 30, 35, 40, 45, 50]
+# cas1_resilience_cons = [resilience1, resilience2, resilience3, resilience4, resilience5, resilience6]
+# cas2_resilience_cons = [resilience7, resilience8, resilience9, resilience10, resilience11, resilience12]
+#
+# plt.plot(case1_mark_num, cas1_resilience_cons, marker="d", color="r", linewidth=0.000001, label="resilience_case1")
+#
+# plt.scatter(case1_mark_num, cas1_resilience_cons, c="r", label="resilience_case1")
+# plt.scatter(case1_mark_num, cas2_resilience_cons, c="b",label="resilience_case2")
+# plt.xticks(np.arange(20, 55, 5))
+# plt.yticks(np.arange(0, 1.5, 0.2))
+# plt.legend(fontsize=8)
+#
+# # 第三张图
+# plt.subplot2grid((3, 2), (2, 0), colspan=2)
+#
+# cas1_resilience_cons_improved = [
+#     resilience1_improved,
+#     resilience2_improved,
+#     resilience3_improved,
+#     resilience4_improved,
+#     resilience5_improved,
+#     resilience6_improved,
+# ]
+# cas2_resilience_cons_improved = [
+#     resilience7_improved,
+#     resilience8_improved,
+#     resilience9_improved,
+#     resilience10_improved,
+#     resilience11_improved,
+#     resilience12_improved,
+# ]
+#
+#
+# plt.scatter(case1_mark_num, cas1_resilience_cons_improved, c="r", label="resilience_case1")
+# plt.scatter(case1_mark_num, cas2_resilience_cons_improved, c="b", label="resilience_case2")
+# plt.xticks(np.arange(20, 55, 5))
+# plt.yticks(np.arange(0, 1.5, 0.2))
 
 
 plt.show()
