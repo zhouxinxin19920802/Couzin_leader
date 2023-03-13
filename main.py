@@ -68,9 +68,9 @@ if lines_in_data == 2:
     times_stable = int(float(times_stable))
 
 
-    time_period_before_disturblance = 50
+    time_period_before_disturblance = 100
 
-    times_start = 500 - time_period_before_disturblance
+    times_start = 750 - time_period_before_disturblance
 
 
     time_period = 300
@@ -191,34 +191,36 @@ f.close()
 
 print("resilience_value:", r)
 
+"""
 # print(delta_l ** (len(data_resilience) / B))
 
-# plt.plot(data_resilience, label="raw")
-# plt.plot(data_resilience_sg, color="r", ls="--", label="smoothed")
-# plt.legend()
-# plt.xlabel("steps")
-# plt.ylabel("velocity")
-# # 标出性能最低点和稳态时间点
-# plt.annotate(
-#     "minimum_value",
-#     xy=(id + time_period_before_disturblance + 2, min_value),
-#     xytext=(id + time_period_before_disturblance + 2, min_value + 1),
-#     weight="bold",
-#     color="b",
-#     arrowprops=dict(arrowstyle="->", connectionstyle="arc3", color="black"),
-# )
-# plt.annotate(
-#     "stable_value",
-#     xy=(times_stable - times_start, data_resilience_sg[times_stable - times_start]),
-#     xytext=(times_stable - times_start, data_resilience_sg[times_stable - times_start] - 0.5),
-#     weight="bold",
-#     color="b",
-#     arrowprops=dict(arrowstyle="->", lw=2, connectionstyle="arc3", color="red"),
-# )
-#
-# # 设置最低水平，蓝色线表示稳定值，红色线条表示稳定值
-# plt.axhline(y=min_value, c="r", ls="-.", lw=1)
-# plt.axhline(y=y_r, c="b", ls="-.", lw=1)
-# plt.show()
-# # plt.pause(0.1)
-# plt.title("Interference data")
+plt.plot(data_resilience, label="raw")
+plt.plot(data_resilience_sg, color="r", ls="--", label="smoothed")
+plt.legend()
+plt.xlabel("steps")
+plt.ylabel("velocity")
+# 标出性能最低点和稳态时间点
+plt.annotate(
+    "minimum_value",
+    xy=(id + time_period_before_disturblance + 2, min_value),
+    xytext=(id + time_period_before_disturblance + 2, min_value + 1),
+    weight="bold",
+    color="b",
+    arrowprops=dict(arrowstyle="->", connectionstyle="arc3", color="black"),
+)
+plt.annotate(
+    "stable_value",
+    xy=(times_stable - times_start, data_resilience_sg[times_stable - times_start]),
+    xytext=(times_stable - times_start, data_resilience_sg[times_stable - times_start] - 0.5),
+    weight="bold",
+    color="b",
+    arrowprops=dict(arrowstyle="->", lw=2, connectionstyle="arc3", color="red"),
+)
+
+# 设置最低水平，蓝色线表示稳定值，红色线条表示稳定值
+plt.axhline(y=min_value, c="r", ls="-.", lw=1)
+plt.axhline(y=y_r, c="b", ls="-.", lw=1)
+plt.show()
+# plt.pause(0.1)
+plt.title("Interference data")
+"""

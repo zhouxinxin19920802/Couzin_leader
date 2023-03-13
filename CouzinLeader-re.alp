@@ -362,22 +362,6 @@ System.out.println(getExperiment().getRunCount());
 					</Properties>
 				</Variable>
 				<Variable Class="PlainVariable">
-					<Id>1653204364547</Id>
-					<Name><![CDATA[size]]></Name>
-					<Description><![CDATA[1.分裂的个数]]></Description>
-					<X>-190</X><Y>390</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="true">
-						<Type><![CDATA[double]]></Type>        
-						<InitialValue Class="CodeValue">
-							<Code><![CDATA[1]]></Code>
-						</InitialValue>
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
 					<Id>1661827435438</Id>
 					<Name><![CDATA[target_area_y]]></Name>
 					<Description><![CDATA[1.目标区域y坐标]]></Description>
@@ -908,7 +892,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[2]]></Code>
+							<Code><![CDATA[3]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1602831944661</Id>
@@ -977,6 +961,8 @@ System.out.println(getExperiment().getRunCount());
 				<Variable Class="Parameter">
 					<Id>1670468167839</Id>
 					<Name><![CDATA[strategy_code]]></Name>
+					<Description><![CDATA[0,1,6 不动，分别对应随机攻击，度攻击，位置攻击
+2,3 ]]></Description>
 					<X>-430</X><Y>290</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -987,7 +973,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[6]]></Code>
+							<Code><![CDATA[2]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1670468167837</Id>
@@ -1124,12 +1110,10 @@ System.out.println(getExperiment().getRunCount());
 					<Id>1677806440139</Id>
 					<Name><![CDATA[location_num]]></Name>
 					<Description><![CDATA[描述攻击的位置
-0:  左边
-1:  右边
-2:  前边
-3.  后边
-4.  中间
-]]></Description>
+1. 左边和右边攻击策略
+2. 前边攻击策略
+3. 后边攻击策略
+4. 中间攻击策略]]></Description>
 					<X>-710</X><Y>650</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -1144,6 +1128,99 @@ System.out.println(getExperiment().getRunCount());
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1677806440137</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1677917942344</Id>
+					<Name><![CDATA[x_of]]></Name>
+					<X>-160</X><Y>640</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1677917942342</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1677917955091</Id>
+					<Name><![CDATA[y_of]]></Name>
+					<X>-160</X><Y>665</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1677917955089</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1678244783940</Id>
+					<Name><![CDATA[size]]></Name>
+					<Description><![CDATA[1.分裂的个数]]></Description>
+					<X>-650</X><Y>260</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[1]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1678244783938</Id>
+							<Label><![CDATA[size]]></Label>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1678539265794</Id>
+					<Name><![CDATA[disturbed_time]]></Name>
+					<X>-170</X><Y>-260</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[150]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1678539265792</Id>
+							<Label><![CDATA[disturbed_time]]></Label>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -1412,12 +1489,7 @@ for(Uav uav:uavs){
 	
 }
 
-/*
-for(Uav uav:uavs){
-	traceln(uav.v_x+" "+ uav.v_y+ " "+Math.sqrt(uav.v_x*uav.v_x+uav.v_y*uav.v_y));
-}
-traceln("------------------");
-*/
+
 
 // 集群的平均运动方向在知情者方向的分量
 // x_v_m 集群x轴方向，y_v_m集群y方向
@@ -1451,7 +1523,7 @@ ArrayList<ArrayList<Uav>>  cons_normal_agents = new ArrayList<ArrayList<Uav>>();
 ArrayList<Integer> l1 = new ArrayList<Integer>(); 
 
 
-if(times>500 && first_time_flag == true){
+if(times> (5*disturbed_time) && first_time_flag == true){
 	int max_index = 0;
 	// 故障发生后找到一个运动着的最大连通子图。
 	// 遍历各连通子图，找到不含故障个体的各连通子图
@@ -1507,6 +1579,7 @@ if(times>500 && first_time_flag == true){
 			try{
 			    FileWriter fw = new FileWriter(data_filePath); //创,追加写入
 			    BufferedWriter bw=new BufferedWriter(fw);
+			    // max表示是最大连通子图中个体的数量
 			    System.out.println("max:"+max);
 			    bw.write(Integer.toString(max)+"\n");
 				bw.write(Integer.toString(times_stable_time)+"\n");
@@ -1654,7 +1727,7 @@ System.out.println("插入无人集群");
 						<OccurrenceAtTime>true</OccurrenceAtTime>
 						<OccurrenceDate>1661932800000</OccurrenceDate>
 						<OccurrenceTime Class="CodeUnitValue">
-							<Code><![CDATA[100]]></Code>
+							<Code><![CDATA[disturbed_time]]></Code>
 							<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
 						</OccurrenceTime>
 						<RecurrenceCode Class="CodeUnitValue">
@@ -1756,43 +1829,90 @@ if (strategy_code == 5) {
 // 6,0 位置攻击策略
 if (strategy_code == 6) {
 	double x_oc = 0;
-	double y_oc= 0;
-	for(Uav uav: uavs){
+	double y_oc = 0;
+	for (Uav uav : uavs) {
 		x_oc = x_oc + uav.p_x;
 		y_oc = y_oc + uav.p_y;
 	}
-	x_oc = x_oc/uavs.size();
-	y_oc = y_oc/uavs.size();
-	
-	double v_group = w_g[1]/w_g[0];
-	
+	x_oc = x_oc / uavs.size();
+	y_oc = y_oc / uavs.size();
+
+	double v_group = w_g[1] / w_g[0];
+///////////////////////////////////////////////////////////////////////
 	// 计算各节点到轴线的距离
-	for(Uav uav: uavs){
-		uav.distance_to_axis = (v_group * uav.p_x + y_oc - v_group*x_oc-uav.p_y)/
-		Math.sqrt(v_group*v_group + 1);
-		System.out.println("id:"+uav.id+" "+"distance:"+uav.distance_to_axis);
+	for (Uav uav : uavs) {
+		uav.distance_to_axis = (v_group * uav.p_x + y_oc
+				- v_group * x_oc - uav.p_y)
+				/ Math.sqrt(v_group * v_group + 1);
+		/*
+		System.out.println("id:" + uav.id + " "
+				+ "distance:" + uav.distance_to_axis);
+		*/	
 	}
+
+	List<Uav> sortbyaxis = sortDescending(uavs, p -> p.distance_to_axis);
 	
-	
-	List<Uav> sortbyaxis = sortDescending(uavs,p->p.distance_to_axis);
 	// 左边右边基本一样，左边
-	if(location_num==1){
+	if (location_num == 1) {
 		// 获取前面的节点
-		List<Uav> sortbyaxis_lg_zero = filter(sortbyaxis, uav->uav.distance_to_axis>0);
-		for(int i = 0;i < sortbyaxis_lg_zero.size()*0.3;i++){
+		List<Uav> sortbyaxis_lg_zero = filter(sortbyaxis,
+				uav -> uav.distance_to_axis > 0);
+		for (int i = 0; i < sortbyaxis_lg_zero.size()
+				* fault_proportion; i++) {
 			fault_list.add(sortbyaxis_lg_zero.get(i).id);
-		}	
+		}
 	}
-	if(location_num==2){
+///////////////////////////////////////////////////////////////////////
 	// 设置一个虚拟的终点，2000已经很大
-		double x_of = 2000;
-		double y_of = v_group*x_of+y_oc-v_group*x_oc;
+	x_of = 1000;
+	y_of = v_group * x_of + y_oc - v_group * x_oc;
+	// 计算所有节点到该虚拟节点的距离
+	for (Uav uav : uavs) {
+		uav.distance_to_virtual_node = Math.sqrt(
+		(uav.p_x - x_of) * (uav.p_x - x_of) + (uav.p_y - y_of) * (uav.p_y - y_of));
+	}
+	// 计算重心到虚拟节点的距离*
+	double distance_oc_virtualnode = Math.sqrt((x_oc-x_of)*(x_oc-x_of)+(y_oc-y_of)*(y_oc-y_of));
+	
+	// 从集群前面攻击
+	if (location_num == 2) {
+	    List<Uav> sort2virtualnode = sortAscending(uavs,p -> p.distance_to_virtual_node);
+		List<Uav> sort2virtualnode_lg_oc = filter(sort2virtualnode, s->s.distance_to_virtual_node<distance_oc_virtualnode);
+		// 打印出到虚拟节点的距离
+		/*
+		for(Uav uav:  sort2virtualnode){
+			System.out.println("id:"+uav.distance_to_virtual_node);
+		}
+		*/
+		for(int i = 0;i<sort2virtualnode_lg_oc.size()*fault_proportion;i++){
+			fault_list.add(sort2virtualnode_lg_oc.get(i).id);
+		}
 		
-		
-		
+
+	}
+	// 从集群后面攻击
+	if (location_num == 3){
+	    // 距离下降
+	    List<Uav> sort2virtualnode = sortDescending(uavs,p -> p.distance_to_virtual_node);
+		List<Uav> sort2virtualnode_lt_oc = filter(sort2virtualnode, s->s.distance_to_virtual_node>distance_oc_virtualnode);
+		for(int i = 0;i<sort2virtualnode_lt_oc.size()*fault_proportion;i++){
+			fault_list.add(sort2virtualnode_lt_oc.get(i).id);
+		}
+	}
+	
+	// 从集群中间攻击
+	if (location_num == 4){
+		for (Uav uav : uavs){
+			uav.distance_to_center = Math.sqrt((uav.p_x - x_oc) * (uav.p_x - x_oc) + (uav.p_y - y_oc) * (uav.p_y - y_oc));
+		}
+		List<Uav> sort2center = sortAscending(uavs, p -> p.distance_to_center);
+		for(int i = 0 ; i< sort2center.size() * fault_proportion;i++){
+			fault_list.add(sort2center.get(i).id);
+		}
 	}
 	
 	
+///////////////////////////////////////////////////////////////////////
 }
 
 // 更新启动失效仿真的标志
@@ -2426,6 +2546,12 @@ catch (Exception e)
 						<Parameter>
 							<Name><![CDATA[distance_to_axis]]></Name>
 						</Parameter>
+						<Parameter>
+							<Name><![CDATA[distance_to_virtual_node]]></Name>
+						</Parameter>
+						<Parameter>
+							<Name><![CDATA[distance_to_center]]></Name>
+						</Parameter>
 					</Parameters>
 					<ReplicationFlag>true</ReplicationFlag>
 					<Replication Class="CodeValue">
@@ -2602,7 +2728,7 @@ catch (Exception e)
 					<Id>1661827187040</Id>
 					<Name><![CDATA[oval1]]></Name>
 					<ExcludeFromBuild>true</ExcludeFromBuild>
-					<X>520</X><Y>740</Y>
+					<X>200</X><Y>740</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -3385,11 +3511,35 @@ catch (Exception e)
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>220</Width>
-					<Height>80</Height>
+					<Height>60</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
 				</Rectangle>
+				<Oval>
+					<Id>1677917859503</Id>
+					<Name><![CDATA[virtual_node]]></Name>
+					<X>360</X><Y>460</Y>
+					<Label><X>0</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<XCode><![CDATA[x_of]]></XCode>
+					<YCode><![CDATA[y_of]]></YCode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<ZHeight>10</ZHeight>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineMaterial>null</LineMaterial>
+					<LineStyle>SOLID</LineStyle>
+					<RadiusX>10</RadiusX>
+					<RadiusY>40</RadiusY>
+					<Rotation>0.0</Rotation>
+					<FillColor>-6632142</FillColor>
+					<FillMaterial>null</FillMaterial>
+				</Oval>
 			</Presentation>
 
 				</Level>
@@ -3830,32 +3980,6 @@ for (int i = 0; i > traceX.length; i++) {
 						</InitialValue>
 					</Properties>
 				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1677831777948</Id>
-					<Name><![CDATA[distance_to_center]]></Name>
-					<Description><![CDATA[1.距离集群中心的距离]]></Description>
-					<X>-440</X><Y>550</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
-				<Variable Class="PlainVariable">
-					<Id>1677831777950</Id>
-					<Name><![CDATA[distance_to_virtual_node]]></Name>
-					<Description><![CDATA[1.距离轴线左边的距离]]></Description>
-					<X>-440</X><Y>580</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<Properties SaveInSnapshot="true" Constant="false" AccessType="public" StaticVariable="false">
-						<Type><![CDATA[double]]></Type>        
-					</Properties>
-				</Variable>
 				<Variable Class="Parameter">
 					<Id>1646986945448</Id>
 					<Name><![CDATA[initHeading]]></Name>
@@ -4239,6 +4363,48 @@ for (int i = 0; i > traceX.length; i++) {
 						<SdArray>false</SdArray>
 						<ParameterEditor>
 							<Id>1677846728863</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1677916884370</Id>
+					<Name><![CDATA[distance_to_virtual_node]]></Name>
+					<X>-440</X><Y>560</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1677916884368</Id>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1677943878244</Id>
+					<Name><![CDATA[distance_to_center]]></Name>
+					<X>-440</X><Y>600</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[double]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<ParameterEditor>
+							<Id>1677943878242</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -4844,10 +5010,31 @@ return dx * dx + dy * dy < range * range;]]></Body>
 					<DyCode><![CDATA[main.target_area_y-p_y]]></DyCode>
 					<Dz>0</Dz>
 				</Line>
+				<Text>
+					<Id>1677834668775</Id>
+					<Name><![CDATA[位置攻击]]></Name>
+					<X>-460</X><Y>490</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D</DrawMode>
+					<EmbeddedIcon>false</EmbeddedIcon>
+					<Z>0</Z>
+					<Rotation>0.0</Rotation>
+					<Color>-16777216</Color>
+					<Text><![CDATA[位置攻击]]></Text>
+					<Font>
+						<Name>SansSerif</Name>
+						<Size>10</Size>
+						<Style>0</Style>
+					</Font>
+					<Alignment>LEFT</Alignment>
+				</Text>
 				<Rectangle>
-					<Id>1677834661194</Id>
+					<Id>1677944044555</Id>
 					<Name><![CDATA[rectangle]]></Name>
-					<X>-460</X><Y>480</Y>
+					<X>-460</X><Y>510</Y>
 					<Label><X>10</X><Y>10</Y></Label>
 					<PublicFlag>true</PublicFlag>
 					<PresentationFlag>true</PresentationFlag>
@@ -4861,32 +5048,11 @@ return dx * dx + dy * dy < range * range;]]></Body>
 					<LineMaterial>null</LineMaterial>
 					<LineStyle>SOLID</LineStyle>
 					<Width>180</Width>
-					<Height>120</Height>
+					<Height>100</Height>
 					<Rotation>0.0</Rotation>
 					<FillColor>-1</FillColor>
 					<FillMaterial>null</FillMaterial>
 				</Rectangle>
-				<Text>
-					<Id>1677834668775</Id>
-					<Name><![CDATA[text1]]></Name>
-					<X>-450</X><Y>490</Y>
-					<Label><X>0</X><Y>-10</Y></Label>
-					<PublicFlag>true</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>false</ShowLabel>
-					<DrawMode>SHAPE_DRAW_2D</DrawMode>
-					<EmbeddedIcon>false</EmbeddedIcon>
-					<Z>0</Z>
-					<Rotation>0.0</Rotation>
-					<Color>-16777216</Color>
-					<Text><![CDATA[text]]></Text>
-					<Font>
-						<Name>SansSerif</Name>
-						<Size>10</Size>
-						<Style>0</Style>
-					</Font>
-					<Alignment>LEFT</Alignment>
-				</Text>
 			</Presentation>
 
 				</Level>
@@ -5407,8 +5573,24 @@ try {
 } catch (Exception e) {
 	e.printStackTrace();
 }]]></BeforeEachExperimentRunCode>
-			<AfterSimulationRunCode><![CDATA[
-]]></AfterSimulationRunCode>
+			<AfterSimulationRunCode><![CDATA[// 仿真运行完，如果集群的连通子图数量还是1的话，则韧性为0
+if(root.size==1){
+	try{
+	    FileWriter fw = new FileWriter(root.data_filePath); //创,追加写入
+	    BufferedWriter bw=new BufferedWriter(fw);
+	    // 
+	    System.out.println("size:"+ root.size);
+	    bw.write(String.valueOf(root.size)+"\n");
+		
+		bw.flush();
+		bw.close();
+	}
+	catch (Exception e)
+	{
+		System.out.println(e);
+	    e.printStackTrace();
+	}
+}]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
 			<SelectionModeForSimultaneousEvents>LIFO</SelectionModeForSimultaneousEvents>
 			<VmArgs><![CDATA[]]></VmArgs>
@@ -5611,6 +5793,18 @@ try {
 				<Parameter>
 					<ParameterName><![CDATA[location_num]]></ParameterName>
 				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[x_of]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[y_of]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[size]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[disturbed_time]]></ParameterName>
+				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
 				<EnableZoomAndPanning>true</EnableZoomAndPanning>
@@ -5624,8 +5818,8 @@ try {
 				<StopOption><![CDATA[Stop at specified time]]></StopOption>
 				<InitialDate><![CDATA[1646870400000]]></InitialDate>	
 				<InitialTime><![CDATA[0.0]]></InitialTime>	
-				<FinalDate><![CDATA[1646870900000]]></FinalDate>	
-				<FinalTime><![CDATA[500.0]]></FinalTime>	
+				<FinalDate><![CDATA[1646871400000]]></FinalDate>	
+				<FinalTime><![CDATA[1000.0]]></FinalTime>	
 			</ModelTimeProperties>
 		</SimulationExperiment>
 		<!--   =========  Parameter Variation Experiment   ========  -->
@@ -5672,6 +5866,25 @@ try {
 }
 ]]></BeforeEachExperimentRunCode>
 			<BeforeSimulationRunCode><![CDATA[System.out.println("仿真准备");]]></BeforeSimulationRunCode>
+			<AfterSimulationRunCode><![CDATA[// 仿真运行完，如果集群的连通子图数量还是1的话，则韧性为0
+if(root.size==1){
+	try{
+	    FileWriter fw = new FileWriter(data_filePath); //创,追加写入
+	    BufferedWriter bw=new BufferedWriter(fw);
+	    // 
+	    System.out.println("size:"+ size);
+	    bw.write(String.valueOf(size)+"\n");
+		
+		bw.flush();
+		bw.close();
+	}
+	catch (Exception e)
+	{
+		System.out.println(e);
+	    e.printStackTrace();
+	}
+
+}]]></AfterSimulationRunCode>
 			<SeedValue>1</SeedValue>
 			<SelectionModeForSimultaneousEvents>FIFO</SelectionModeForSimultaneousEvents>
 			<VmArgs><![CDATA[]]></VmArgs>
@@ -7091,6 +7304,18 @@ try {
 			<FreeformParamValue>	
 				<Id>1677806440139</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1677917942344</Id>
+			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1677917955091</Id>
+			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1678244783940</Id>
+			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1678539265794</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1596099500018</Id>
 				<Type>FIXED</Type>
@@ -7183,6 +7408,22 @@ try {
 				<Id>1677806440139</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1677917942344</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1677917955091</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1678244783940</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1678539265794</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
 			<ModelTimeProperties>
 				<StopOption><![CDATA[Stop at specified time]]></StopOption>
 				<InitialDate><![CDATA[1646870400000]]></InitialDate>	
@@ -7199,7 +7440,7 @@ try {
 			<ReplicationsProperties>
 				<UseReplication>true</UseReplication>
 				<FixedReplicationsNumber>true</FixedReplicationsNumber>
-				<ReplicationPerIteration>50</ReplicationPerIteration>
+				<ReplicationPerIteration>30</ReplicationPerIteration>
 				<MinimumReplication>2</MinimumReplication>
 				<MaximumReplication>10</MaximumReplication>
 				<ConfidenceLevel>LEVEL_80</ConfidenceLevel>
