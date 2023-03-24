@@ -865,7 +865,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitOfValue Class="LengthUnits"><![CDATA[METER]]></UnitOfValue>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0.2]]></Code>
+							<Code><![CDATA[0.3]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1661864158826</Id>
@@ -961,8 +961,8 @@ System.out.println(getExperiment().getRunCount());
 				<Variable Class="Parameter">
 					<Id>1670468167839</Id>
 					<Name><![CDATA[strategy_code]]></Name>
-					<Description><![CDATA[0,1,6 不动，分别对应随机攻击，度攻击，位置攻击
-2,3 ]]></Description>
+					<Description><![CDATA[0,1,6   不动，分别对应随机攻击，度攻击，位置攻击
+2,3,7    随机运动，分别对应随机攻击，度攻击，位置攻击]]></Description>
 					<X>-430</X><Y>290</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -973,7 +973,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[2]]></Code>
+							<Code><![CDATA[7]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1670468167837</Id>
@@ -1124,10 +1124,11 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[1]]></Code>
+							<Code><![CDATA[3]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1677806440137</Id>
+							<Label><![CDATA[location_num]]></Label>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -1367,7 +1368,7 @@ if(strategy_code==4  || strategy_code== 5){
 	 }
 }
 
-if(strategy_code==2  || strategy_code== 3){
+if(strategy_code==2  || strategy_code == 3 || strategy_code == 7){
 	for (int i = 0; i < uavs.size(); i++) {
 		if(fault_list.contains(uavs.get(i).id)){  
 		  	  double random_angle = Math.random() * 2*PI; 
@@ -1441,11 +1442,11 @@ for (int i = 0; i < uavs.size(); i++) {
 			  uavs.get(i).p_y += uavs.get(i).v_y * dt;
 		  }
 	 }
-	 if(strategy_code == 2 || strategy_code == 3){
+	 if(strategy_code == 2 || strategy_code == 3 || strategy_code == 7){
 		 uavs.get(i).p_x += uavs.get(i).v_x * dt;
 	     uavs.get(i).p_y += uavs.get(i).v_y * dt;	
 	}
-	if(strategy_code == 4 || strategy_code == 5){
+	if(strategy_code == 4 || strategy_code == 5 || strategy_code == 8){
 		 uavs.get(i).p_x += uavs.get(i).v_x * dt;
 	     uavs.get(i).p_y += uavs.get(i).v_y * dt;	
 	}
@@ -1826,8 +1827,9 @@ if (strategy_code == 5) {
 	}
 }
 
-// 6,0 位置攻击策略
-if (strategy_code == 6) {
+// 6,0 位置攻击策略 。 1表示左右，2前面， 3后面，4中间
+if (strategy_code == 6 || strategy_code == 7) {
+	System.out.println("随机运动——策略7运行");
 	double x_oc = 0;
 	double y_oc = 0;
 	for (Uav uav : uavs) {
@@ -1844,10 +1846,6 @@ if (strategy_code == 6) {
 		uav.distance_to_axis = (v_group * uav.p_x + y_oc
 				- v_group * x_oc - uav.p_y)
 				/ Math.sqrt(v_group * v_group + 1);
-		/*
-		System.out.println("id:" + uav.id + " "
-				+ "distance:" + uav.distance_to_axis);
-		*/	
 	}
 
 	List<Uav> sortbyaxis = sortDescending(uavs, p -> p.distance_to_axis);

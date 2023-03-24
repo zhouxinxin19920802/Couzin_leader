@@ -48,6 +48,7 @@ cons_200_degree = [0.1056, 0.025495, 0.044730, 0.0694, 0.0809, 0.04996]
 # cons_100_end = [1.75521, 1.61372, 1.52145, 1.306723, 0.86618, 0.619886]
 # cons_200_end = [1.53135, 1.4484739, 1.3200320, 1.08039, 0.970549, 0.828908]
 
+"""
 # 左右方攻击
 cons_20_right = [1.046836, 1.06226, 0.884405, 0.728042, 0.625974, 0.4980751]
 cons_50_right = [1.6722, 1.26549, 0.94776, 0.726067, 0.5511449, 0.446050]
@@ -88,11 +89,42 @@ ax.plot(x, cons_200_front, color="gold", label="swarm_size=200", marker="D", lw=
 # ax.plot(x, cons_50_degree, color="black", label="swarm_size=50", marker="v", lw=1, linestyle="--")
 # ax.plot(x, cons_100_degree, color="red", label="swarm_size=100", marker="p", lw=1, linestyle="--")
 # ax.plot(x, cons_200_degree, color="gold", label="swarm_size=200", marker="D", lw=1, linestyle="--")
+"""
 
+
+fig = plt.figure()
+ax = fig.add_axes([0.2, 0.2, 0.7, 0.7])
+
+###################################################################
+# 随机运动攻击
+"""
+cons_random_movement = [0.765532,	0.40292,	0.186006,	0.044010,	0.0277273,	0.00630018]
+ax.plot(x, cons_random_movement, color="blue", label="swarm_size=20", marker="o", lw=1, linestyle="-")
+"""
+
+""""
+
+# 不同规模集群
+cons_20_random_move = [1.1182, 0.81686, 0.62139, 0.21369, 0.109849, 0.060304]
+cons_50_random_move = [1.034706, 0.69067, 0.43947, 0.1309, 0.06853, 0.02562]
+cons_100_random_move = [0.98646, 0.42424, 0.355504, 0.08347, 0.04566, 0.01974]
+cons_200_random_move = [0.6729, 0.3433, 0.15637, 0.07168, 0.03652, 0.01758]
+"""
+cons_20_random_move_degree = [0.760729, 0.38182, 0.18628, 0.04783, 0.024753, 0.0081522]
+cons_50_random_move_degree = [0.901047, 0.27921, 0.1989878, 0.10842, 0.05712, 0.026358]
+cons_100_random_move_degree = [0.143796, 0.10422, 0.098822, 0.075547, 0.050921, 0.0174766]
+cons_200_random_move_degree = [0.041016, 0.061588, 0.0171035, 0.04459, 0.018804, 0.0114091]
+
+ax.plot(x, cons_20_random_move_degree, color="blue", label="swarm_size=20", marker="o", lw=1, linestyle="-")
+ax.plot(x, cons_50_random_move_degree, color="black", label="swarm_size=50", marker="v", lw=1, linestyle="-")
+ax.plot(x, cons_100_random_move_degree, color="red", label="swarm_size=100", marker="p", lw=1, linestyle="-")
+ax.plot(x, cons_200_random_move_degree, color="gold", label="swarm_size=200", marker="D", lw=1, linestyle="-")
+
+ax.xaxis.set_major_locator(MultipleLocator(0.2))
+ax.yaxis.set_major_locator(MultipleLocator(0.1))
 
 ax.set_xlabel("Failure proportion")
 ax.set_ylabel("resilience")
-
 ax.legend()
 
 
