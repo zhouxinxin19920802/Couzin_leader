@@ -64,27 +64,22 @@ with open("data.txt", "r", encoding="utf-8") as f:
 r = 0
 
 if lines_in_data == 2:
-
     times_stable = int(float(times_stable))
-
 
     time_period_before_disturblance = 100
 
     times_start = 750 - time_period_before_disturblance
 
-
     time_period = 300
 
-
     # 获取的时间段为故障前(time_period_before_disturblance)个step到稳态后的(time_period)个时间段
-    data_resilience = data[times_start : times_stable + time_period]
-
+    data_resilience = data[times_start: times_stable + time_period]
 
     # sg滤波 window_length: 窗口长度，该值为正奇数，polyorder越大越平滑
     # window_length值越小，则曲线越贴近真实曲线
     # polyorder: 用于拟合样本的多项式的阶数
     data_resilience_sg = sg(data_resilience, window_length=25, polyorder=1)
-    data_after_destroy = data_resilience_sg[times_stable - times_start : times_stable - times_start + time_period]
+    data_after_destroy = data_resilience_sg[times_stable - times_start: times_stable - times_start + time_period]
 
     # 获取最小值
     id, min_value = get_min(data_resilience_sg[time_period_before_disturblance:-time_period])
@@ -111,7 +106,6 @@ if lines_in_data == 2:
 
     print("meanvalue_after_destroy:", meanvalue_after_destroy, " ", "var_after_destroy:", var_after_destroy)
 
-
     y_r = meanvalue_after_destroy
 
     print("min_value:", min_value, " y_r:", y_r)
@@ -131,7 +125,6 @@ if lines_in_data == 2:
 
     # 最低性能要求
     y_m = 0
-
 
     #  总性能因子
     sigma = sum(data_resilience_sg) / (y_d * len(data_resilience_sg))
@@ -154,7 +147,6 @@ if lines_in_data == 2:
     B = 300
 
     # 计算到稳态后较长的一段时间内，数据的平均值和方差
-
 
     # 做一个判断，比较恢复后的水平和最小的水平y_r和y_min
 
@@ -183,7 +175,6 @@ if lines_in_data == 2:
     # print("########################")
 
 
-
 f = open("resilence.txt", "a+")
 f.write(str(r) + "\n")
 f.close()
@@ -191,7 +182,7 @@ f.close()
 
 print("resilience_value:", r)
 
-"""
+
 # print(delta_l ** (len(data_resilience) / B))
 
 plt.plot(data_resilience, label="raw")
@@ -199,6 +190,19 @@ plt.plot(data_resilience_sg, color="r", ls="--", label="smoothed")
 plt.legend()
 plt.xlabel("steps")
 plt.ylabel("velocity")
+
+"""
+#标出故障发生的时刻
+plt.annotate(
+    "failure start ",
+    xy=(time_period_before_disturblance + 2, data_resilience_sg[time_period_before_disturblance]),
+    xytext=(time_period_before_disturblance + 2, data_resilience_sg[time_period_before_disturblance] + 1),
+    weight="bold",
+    color="b",
+    arrowprops=dict(arrowstyle="->", connectionstyle="arc3", color="black"),
+)
+
+
 # 标出性能最低点和稳态时间点
 plt.annotate(
     "minimum_value",
