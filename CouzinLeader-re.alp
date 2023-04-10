@@ -549,7 +549,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[20]]></Code>
+							<Code><![CDATA[100]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1646988513690</Id>
@@ -865,7 +865,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitOfValue Class="LengthUnits"><![CDATA[METER]]></UnitOfValue>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0.7]]></Code>
+							<Code><![CDATA[0.2]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1661864158826</Id>
