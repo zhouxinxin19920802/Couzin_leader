@@ -549,7 +549,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[50]]></Code>
+							<Code><![CDATA[20]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1646988513690</Id>
@@ -865,7 +865,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitOfValue Class="LengthUnits"><![CDATA[METER]]></UnitOfValue>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0.3]]></Code>
+							<Code><![CDATA[0.7]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1661864158826</Id>
@@ -962,7 +962,8 @@ System.out.println(getExperiment().getRunCount());
 					<Id>1670468167839</Id>
 					<Name><![CDATA[strategy_code]]></Name>
 					<Description><![CDATA[0,1,6   不动，分别对应随机攻击，度攻击，位置攻击
-2,3,7    随机运动，分别对应随机攻击，度攻击，位置攻击]]></Description>
+2,3,7    随机运动，分别对应随机攻击，度攻击，位置攻击
+4,5,8   感知半径缩小，分别对应随攻击，度攻击，位置攻击]]></Description>
 					<X>-430</X><Y>290</Y>
 					<Label><X>10</X><Y>0</Y></Label>
 					<PublicFlag>false</PublicFlag>
@@ -973,7 +974,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[7]]></Code>
+							<Code><![CDATA[8]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1670468167837</Id>
@@ -1124,7 +1125,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[3]]></Code>
+							<Code><![CDATA[1]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1677806440137</Id>
@@ -1353,7 +1354,7 @@ System.out.println(getExperiment().getRunCount());
 //2,3和4,5失效个体运动规则设计
 // 4或5  感知半径变小情况下的智能体运动规则
 
-if(strategy_code==4  || strategy_code== 5){
+if(strategy_code==4  || strategy_code== 5 || strategy_code== 8){
 	for (int i = 0; i < uavs.size(); i++) {	
 	 	boolean flag = false;
 	 	for(Integer interfer_id : interferon_list){
@@ -1549,22 +1550,44 @@ if(times> (5*disturbed_time) && first_time_flag == true){
 		max_index = l1.indexOf(max);
 		// 开始寻找stable的时间
 		boolean times_stable = true;
-		// 获取最大的连通子图
-		for(Uav uav : cons_normal_agents.get(max_index)){
-			
-			for(int fault_mark : fault_list){
-				// 计算距离
-				if (Math.sqrt((uav.p_x - uavs.get(fault_mark).p_x) * (uav.p_x - uavs.get(fault_mark).p_x) + 
-				(uav.p_y - uavs.get(fault_mark).p_y) * (uav.p_y - uavs.get(fault_mark).p_y))< attrack_range){
-					times_stable = false;
-					break;					
+		// 获取最大的连通子图，不动和随机
+		if(strategy_code == 0 || strategy_code == 1 ||  strategy_code == 2 ||
+		 strategy_code == 3 || strategy_code == 6 || strategy_code == 7){
+			for(Uav uav : cons_normal_agents.get(max_index)){
+				// 故障个体不与正常个体进行交互，主要指不动和随机运动
+				for(int fault_mark : fault_list){
+					// 计算距离
+					if (Math.sqrt((uav.p_x - uavs.get(fault_mark).p_x) * (uav.p_x - uavs.get(fault_mark).p_x) + 
+					(uav.p_y - uavs.get(fault_mark).p_y) * (uav.p_y - uavs.get(fault_mark).p_y))< attrack_range){
+						times_stable = false;
+						break;					
+					}
+				}
+	
+				if(times_stable==false){
+					break;	
 				}
 			}
-			
-			if(times_stable==false){
-				break;	
-			}
 		}
+		if(strategy_code == 4 || strategy_code == 5 ||  strategy_code == 8){
+			for(Uav uav : cons_normal_agents.get(max_index)){
+				// 故障个体不与正常个体进行交互，主要指不动和随机运动
+				for(int fault_mark : interferon_list){
+					// 计算距离
+					if (Math.sqrt((uav.p_x - uavs.get(fault_mark).p_x) * (uav.p_x - uavs.get(fault_mark).p_x) + 
+					(uav.p_y - uavs.get(fault_mark).p_y) * (uav.p_y - uavs.get(fault_mark).p_y))< attrack_range){
+						times_stable = false;
+						break;					
+					}
+				}
+	
+				if(times_stable==false){
+					break;	
+				}
+			} 	
+		 
+		}
+		
 		
 		times_stable_p = times_stable;
 	
@@ -1827,9 +1850,9 @@ if (strategy_code == 5) {
 	}
 }
 
-// 6,0 位置攻击策略 。 1表示左右，2前面， 3后面，4中间
-if (strategy_code == 6 || strategy_code == 7) {
-	System.out.println("随机运动——策略7运行");
+// 6,0 不动 位置攻击策略 。 1表示左右，2前面， 3后面，4中间
+// 6不动，7随机运动，8感知半径缩小
+if (strategy_code == 6 || strategy_code == 7 || strategy_code == 8) {
 	double x_oc = 0;
 	double y_oc = 0;
 	for (Uav uav : uavs) {
@@ -1857,7 +1880,12 @@ if (strategy_code == 6 || strategy_code == 7) {
 				uav -> uav.distance_to_axis > 0);
 		for (int i = 0; i < sortbyaxis_lg_zero.size()
 				* fault_proportion; i++) {
-			fault_list.add(sortbyaxis_lg_zero.get(i).id);
+			if(strategy_code == 6 || strategy_code == 7){
+				fault_list.add(sortbyaxis_lg_zero.get(i).id);
+			}else{
+				// 获取受干扰节点
+				interferon_list.add(sortbyaxis_lg_zero.get(i).id);
+			}
 		}
 	}
 ///////////////////////////////////////////////////////////////////////
@@ -1882,8 +1910,13 @@ if (strategy_code == 6 || strategy_code == 7) {
 			System.out.println("id:"+uav.distance_to_virtual_node);
 		}
 		*/
-		for(int i = 0;i<sort2virtualnode_lg_oc.size()*fault_proportion;i++){
-			fault_list.add(sort2virtualnode_lg_oc.get(i).id);
+		for(int i = 0;i<sort2virtualnode_lg_oc.size()*fault_proportion;i++){	
+			if(strategy_code == 6 || strategy_code == 7){
+				fault_list.add(sort2virtualnode_lg_oc.get(i).id);
+			}else{
+				// 获取受干扰节点
+				interferon_list.add(sort2virtualnode_lg_oc.get(i).id);
+			}
 		}
 		
 
@@ -1894,7 +1927,11 @@ if (strategy_code == 6 || strategy_code == 7) {
 	    List<Uav> sort2virtualnode = sortDescending(uavs,p -> p.distance_to_virtual_node);
 		List<Uav> sort2virtualnode_lt_oc = filter(sort2virtualnode, s->s.distance_to_virtual_node>distance_oc_virtualnode);
 		for(int i = 0;i<sort2virtualnode_lt_oc.size()*fault_proportion;i++){
-			fault_list.add(sort2virtualnode_lt_oc.get(i).id);
+			if(strategy_code == 6 || strategy_code == 7){
+				fault_list.add(sort2virtualnode_lt_oc.get(i).id);
+			}else{
+				interferon_list.add(sort2virtualnode_lt_oc.get(i).id);
+			}
 		}
 	}
 	
@@ -1905,7 +1942,12 @@ if (strategy_code == 6 || strategy_code == 7) {
 		}
 		List<Uav> sort2center = sortAscending(uavs, p -> p.distance_to_center);
 		for(int i = 0 ; i< sort2center.size() * fault_proportion;i++){
-			fault_list.add(sort2center.get(i).id);
+			if(strategy_code == 6 || strategy_code == 7){
+				fault_list.add(sort2center.get(i).id);
+			}else{
+				interferon_list.add(sort2center.get(i).id);
+				
+			}
 		}
 	}
 	
