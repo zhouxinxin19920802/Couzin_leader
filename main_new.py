@@ -66,7 +66,7 @@ for line in open("shape_data.txt", "r", encoding="utf-8"):
 times_stable = 0
 with open("data.txt", "r", encoding="utf-8") as f:
     lines = f.readlines()
-    times_stable = lines[0].strip("\n")
+    times_stable = lines[1].strip("\n")
 
 
 times_stable = int(float(times_stable))
