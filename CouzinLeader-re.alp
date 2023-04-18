@@ -182,6 +182,13 @@ import java.util.*;
 import java.util.Map.Entry;]]></Import>
 			<StartupCode><![CDATA[
 System.out.println("启动");
+
+//#####################################
+// 为了生成不同的性能曲线，给文件重命名，这个图完，下面的两行代码需要注释掉
+shape_data_filePath = file_prefix + shape_data_filePath;
+data_filePath = file_prefix + data_filePath;
+
+
 try{
      File shape_data_file = new File(shape_data_filePath);
      if(shape_data_file.delete()){
@@ -250,7 +257,7 @@ try {
     } catch(Exception ex){
     	 ex.printStackTrace(); 
 }
-System.out.println(getExperiment().getRunCount());
+//System.out.println(getExperiment().getRunCount());
 ]]></DestroyCode>
 			<Generic>false</Generic>
 			<GenericParameter>
@@ -549,7 +556,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[100]]></Code>
+							<Code><![CDATA[20]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1646988513690</Id>
@@ -865,7 +872,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitOfValue Class="LengthUnits"><![CDATA[METER]]></UnitOfValue>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[0.2]]></Code>
+							<Code><![CDATA[0.1]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1661864158826</Id>
@@ -974,7 +981,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[8]]></Code>
+							<Code><![CDATA[4]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1670468167837</Id>
@@ -1125,7 +1132,7 @@ System.out.println(getExperiment().getRunCount());
 						<UnitType><![CDATA[NONE]]></UnitType>
 						<SdArray>false</SdArray>
 						<DefaultValue Class="CodeValue">
-							<Code><![CDATA[1]]></Code>
+							<Code><![CDATA[4]]></Code>
 						</DefaultValue>
 						<ParameterEditor>
 							<Id>1677806440137</Id>
@@ -1223,6 +1230,30 @@ System.out.println(getExperiment().getRunCount());
 						<ParameterEditor>
 							<Id>1678539265792</Id>
 							<Label><![CDATA[disturbed_time]]></Label>
+							<EditorContolType>TEXT_BOX</EditorContolType>
+							<MinSliderValue><![CDATA[0]]></MinSliderValue>
+							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
+							<DelimeterType>NO_DELIMETER</DelimeterType>
+						</ParameterEditor>
+					</Properties>                 
+				</Variable>
+				<Variable Class="Parameter">
+					<Id>1681612328627</Id>
+					<Name><![CDATA[file_prefix]]></Name>
+					<X>-2020</X><Y>1300</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<Properties SaveInSnapshot="true" ModificatorType="STATIC">
+						<Type><![CDATA[String]]></Type>
+						<UnitType><![CDATA[NONE]]></UnitType>
+						<SdArray>false</SdArray>
+						<DefaultValue Class="CodeValue">
+							<Code><![CDATA[""]]></Code>
+						</DefaultValue>
+						<ParameterEditor>
+							<Id>1681612328625</Id>
 							<EditorContolType>TEXT_BOX</EditorContolType>
 							<MinSliderValue><![CDATA[0]]></MinSliderValue>
 							<MaxSliderValue><![CDATA[100]]></MaxSliderValue>
@@ -1683,8 +1714,7 @@ if(times%50==0 && times!=0 && times>50){
 
 // 集群延展度，速度方向(最远-最近)，相对于起点，最远和最近的，垂直于速度方向
 
-
-
+//System.out.println("total_time:"+time()); 
 
    ]]></Action>
 					<Logging>false</Logging>
@@ -1968,7 +1998,7 @@ for (int i = 0; i < uavs.size(); i++) {
 	// 4,5
 	for (Integer item : interferon_list) {
 		if (item.intValue() == uavs.get(i).id) {
-			uavs.get(i).color = yellow;
+			uavs.get(i).color = white;
 		}
 	}
 
@@ -2441,25 +2471,6 @@ catch (Exception e)
 					<Separators></Separators>
 				</TextFile>
 				<TextFile>
-					<Id>1675137216225</Id>
-					<Name><![CDATA[shape_data]]></Name>
-					<ExcludeFromBuild>true</ExcludeFromBuild>
-					<X>-1690</X><Y>950</Y>
-					<Label><X>10</X><Y>0</Y></Label>
-					<PublicFlag>false</PublicFlag>
-					<PresentationFlag>true</PresentationFlag>
-					<ShowLabel>true</ShowLabel>
-					<FileType>FILE</FileType>
-					<Url><![CDATA[]]></Url>
-					<ResourceReference>
-						<PackageName><![CDATA[couzin]]></PackageName>
-						<ClassName><![CDATA[shape_data.txt]]></ClassName>
-					</ResourceReference>
-					<FileMode>WRITE</FileMode>
-					<CharsetName>null</CharsetName>
-					<Separators></Separators>
-				</TextFile>
-				<TextFile>
 					<Id>1675839199895</Id>
 					<Name><![CDATA[data]]></Name>
 					<Description><![CDATA[存储需要用的一些数据
@@ -2686,6 +2697,67 @@ catch (Exception e)
 					<ReplicationFlag>true</ReplicationFlag>
 					<Replication Class="CodeValue">
 						<Code><![CDATA[1]]></Code>
+					</Replication>
+					<CollectionType>ARRAY_LIST_BASED</CollectionType>
+					<InEnvironment>true</InEnvironment>	
+					<InitialLocationType>AT_ANIMATION_POSITION</InitialLocationType>
+					<XCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</XCode>
+					<YCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</YCode>
+					<ZCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ZCode>
+					<ColumnCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</ColumnCode>
+					<RowCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</RowCode>
+					<LatitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LatitudeCode>
+					<LongitudeCode Class="CodeValue">
+						<Code><![CDATA[0]]></Code>
+					</LongitudeCode>
+					<LocationNameCode Class="CodeValue">
+						<Code><![CDATA[""]]></Code>
+					</LocationNameCode>
+					<InitializationType>SPECIFIED_NUMBER</InitializationType>
+					<InitializationDatabaseTableQuery>
+						<TableReference>
+						</TableReference>
+					</InitializationDatabaseTableQuery>
+					<InitializationDatabaseType>ONE_AGENT_PER_DATABASE_RECORD</InitializationDatabaseType>
+					<QuantityColumn>
+					</QuantityColumn>
+				</EmbeddedObject>
+				<EmbeddedObject>
+					<Id>0</Id>
+					<Name><![CDATA[myAgent]]></Name>
+					<X>70</X><Y>310</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<ActiveObjectClass>
+						<PackageName><![CDATA[couzin]]></PackageName>
+						<ClassName><![CDATA[MyAgent]]></ClassName>
+					</ActiveObjectClass>
+					<GenericParameterSubstitute>
+						<GenericParameterSubstituteReference>
+							<PackageName><![CDATA[couzin]]></PackageName>
+							<ClassName><![CDATA[MyAgent]]></ClassName>
+							<ItemName><![CDATA[1681724815268]]></ItemName>
+						</GenericParameterSubstituteReference>
+					</GenericParameterSubstitute>
+					<Parameters>
+					</Parameters>
+					<ReplicationFlag>false</ReplicationFlag>
+					<Replication Class="CodeValue">
+						<Code><![CDATA[100]]></Code>
 					</Replication>
 					<CollectionType>ARRAY_LIST_BASED</CollectionType>
 					<InEnvironment>true</InEnvironment>	
@@ -3559,6 +3631,7 @@ catch (Exception e)
 				<Oval>
 					<Id>1677917859503</Id>
 					<Name><![CDATA[virtual_node]]></Name>
+					<ExcludeFromBuild>true</ExcludeFromBuild>
 					<X>360</X><Y>460</Y>
 					<Label><X>0</X><Y>0</Y></Label>
 					<PublicFlag>true</PublicFlag>
@@ -5525,6 +5598,210 @@ return  angle;]]></Body>
 			</Presentation>
 
 		</ActiveObjectClass>
+		<!--   =========   Active Object Class   ========  -->
+		<ActiveObjectClass>
+			<Id>1681724815270</Id>
+			<Name><![CDATA[MyAgent]]></Name>
+			<ClientAreaTopLeft><X>0</X><Y>0</Y></ClientAreaTopLeft>
+			<Generic>false</Generic>
+			<GenericParameter>
+				<Id>1681724815268</Id>
+				<Name><![CDATA[1681724815268]]></Name>
+				<GenericParameterValue Class="CodeValue">
+					<Code><![CDATA[T extends Agent]]></Code>
+				</GenericParameterValue>
+				<GenericParameterLabel><![CDATA[泛型参数：]]></GenericParameterLabel>
+			</GenericParameter>
+			<FlowChartsUsage>ENTITY</FlowChartsUsage>
+			<SamplesToKeep>100</SamplesToKeep>
+			<LimitNumberOfArrayElements>false</LimitNumberOfArrayElements>
+			<ElementsLimitValue>100</ElementsLimitValue>
+			<MakeDefaultViewArea>true</MakeDefaultViewArea>
+			<SceneGridColor/>
+			<SceneBackgroundColor/>
+			<SceneSkybox>null</SceneSkybox>
+			<AgentProperties>
+	 			<SpaceType>CONTINUOUS</SpaceType>			
+				<EnvironmentDefinesInitialLocation>true</EnvironmentDefinesInitialLocation>
+				<RotateAnimationTowardsMovement>true</RotateAnimationTowardsMovement>
+				<RotateAnimationVertically>false</RotateAnimationVertically>
+				<VelocityCode Class="CodeUnitValue">
+					<Code><![CDATA[10]]></Code>
+					<Unit Class="SpeedUnits"><![CDATA[MPS]]></Unit>
+				</VelocityCode>
+				<PhysicalLength Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalLength>
+				<PhysicalWidth Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalWidth>
+				<PhysicalHeight Class="CodeUnitValue">
+					<Code><![CDATA[1]]></Code>
+					<Unit Class="LengthUnits"><![CDATA[METER]]></Unit>
+				</PhysicalHeight>
+			</AgentProperties>
+			<EnvironmentProperties>
+					<EnableSteps>false</EnableSteps>
+					<StepDurationCode Class="CodeUnitValue">
+						<Code><![CDATA[1.0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+					</StepDurationCode>
+					<SpaceType>CONTINUOUS</SpaceType>
+					<WidthCode><![CDATA[500]]></WidthCode>
+					<HeightCode><![CDATA[500]]></HeightCode>
+					<ZHeightCode><![CDATA[0]]></ZHeightCode>
+					<ColumnsCountCode><![CDATA[100]]></ColumnsCountCode>
+					<RowsCountCode><![CDATA[100]]></RowsCountCode>
+					<NeigborhoodType>MOORE</NeigborhoodType>
+					<LayoutType>USER_DEF</LayoutType>
+					<LayoutTypeApplyOnStartup>true</LayoutTypeApplyOnStartup>
+					<NetworkType>USER_DEF</NetworkType>
+					<NetworkTypeApplyOnStartup>true</NetworkTypeApplyOnStartup>
+					<ConnectionsPerAgentCode><![CDATA[2]]></ConnectionsPerAgentCode>
+					<ConnectionsRangeCode><![CDATA[50]]></ConnectionsRangeCode>
+					<NeighborLinkFractionCode><![CDATA[0.95]]></NeighborLinkFractionCode>
+					<MCode><![CDATA[10]]></MCode>
+			</EnvironmentProperties>
+			<DatasetsCreationProperties>
+				<AutoCreate>true</AutoCreate>
+					<OccurrenceAtTime>true</OccurrenceAtTime>
+					<OccurrenceDate>1681804800000</OccurrenceDate>
+					<OccurrenceTime Class="CodeUnitValue">
+						<Code><![CDATA[0]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+					</OccurrenceTime>
+					<RecurrenceCode Class="CodeUnitValue">
+						<Code><![CDATA[1]]></Code>
+						<Unit Class="TimeUnits"><![CDATA[SECOND]]></Unit>
+					</RecurrenceCode>
+			</DatasetsCreationProperties>
+			<ScaleRuler>
+				<Id>1681724815266</Id>
+				<Name><![CDATA[scale]]></Name>
+				<X>0</X><Y>-150</Y>
+				<PublicFlag>false</PublicFlag>
+				<PresentationFlag>false</PresentationFlag>
+				<ShowLabel>false</ShowLabel>
+				<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+				<Length>100</Length>
+				<Rotation>0</Rotation>
+				<ScaleType>BASED_ON_LENGTH</ScaleType>
+				<ModelLength>10</ModelLength>
+				<LengthUnits>METER</LengthUnits>
+				<Scale>10</Scale>
+				<InheritedFromParentAgentType>true</InheritedFromParentAgentType>
+			</ScaleRuler>
+			<CurrentLevel>1681724815269</CurrentLevel>
+			<ConnectionsId>1681724815265</ConnectionsId>
+			<AgentLinks>
+				<AgentLink>
+					<Id>1681724815265</Id>
+					<Name><![CDATA[connections]]></Name>
+					<X>50</X><Y>-50</Y>
+					<Label><X>15</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<HandleReceiveInConnections>false</HandleReceiveInConnections>
+					<AgentLinkType>COLLECTION_OF_LINKS</AgentLinkType>
+					<AgentLinkBidirectional>true</AgentLinkBidirectional>
+					<MessageType><![CDATA[Object]]></MessageType>
+					<LineStyle>SOLID</LineStyle>
+					<LineWidth>1</LineWidth>
+					<LineColor>-16777216</LineColor>
+					<LineZOrder>UNDER_AGENTS</LineZOrder>
+					<LineArrow>NONE</LineArrow>
+					<LineArrowPosition>END</LineArrowPosition>
+				</AgentLink>
+			</AgentLinks>
+
+			<ContainerLinks>
+				<ContainerLink>
+					<Id>1681724815317</Id>
+					<Name><![CDATA[main]]></Name>
+					<X>50</X><Y>-100</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>false</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>true</ShowLabel>
+					<ActiveObjectClass>
+						<PackageName><![CDATA[couzin]]></PackageName>
+						<ClassName><![CDATA[Main]]></ClassName>
+					</ActiveObjectClass>
+				</ContainerLink>
+			</ContainerLinks>
+
+			<Presentation>
+				<Level>
+					<Id>1681724815269</Id>
+					<Name><![CDATA[level]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>10</X><Y>0</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<Z>0</Z>
+					<LevelVisibility>DIM_NON_CURRENT</LevelVisibility>
+
+			<Presentation>
+				<Figure3D>
+					<Id>1681724815284</Id>
+					<Name><![CDATA[person]]></Name>
+					<X>0</X><Y>0</Y>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<PublicFlag>true</PublicFlag>
+					<PresentationFlag>true</PresentationFlag>
+					<ShowLabel>false</ShowLabel>
+					<DrawMode>SHAPE_DRAW_2D3D</DrawMode>
+					<X>0</X><Y>0</Y><Z>0</Z>
+					<Label><X>0</X><Y>-10</Y></Label>
+					<ResourceReference>
+						<PackageName><![CDATA[couzin]]></PackageName>
+						<ClassName><![CDATA[3d/person.dae]]></ClassName>
+					</ResourceReference>
+					<ColorTable>
+						<ColorMapping>
+							<Name><![CDATA[Material__3__Surf]]></Name>
+							<OriginalColor>-3355444</OriginalColor>
+						</ColorMapping>
+						<ColorMapping>
+							<Name><![CDATA[Material__5__Surf]]></Name>
+							<OriginalColor>-3355444</OriginalColor>
+						</ColorMapping>
+						<ColorMapping>
+							<Name><![CDATA[Material__6__Surf]]></Name>
+							<OriginalColor>-4083577</OriginalColor>
+						</ColorMapping>
+						<ColorMapping>
+							<Name><![CDATA[Material__2__Surf]]></Name>
+							<OriginalColor>-13355980</OriginalColor>
+						</ColorMapping>
+						<ColorMapping>
+							<Name><![CDATA[Material__4__Surf]]></Name>
+							<OriginalColor>-13355980</OriginalColor>
+						</ColorMapping>
+						<ColorMapping>
+							<Name><![CDATA[Material__1__Surf]]></Name>
+							<OriginalColor>-5279952</OriginalColor>
+						</ColorMapping>
+					</ColorTable>
+					<AutoScale>true</AutoScale>
+					<Scale>1.0</Scale>
+					<Rotation>0.0</Rotation>
+					<AxisOrder>YZX_AXIS_ORDER</AxisOrder>
+					<ApplyShading>true</ApplyShading>
+					<InternalLighting>OFF</InternalLighting>
+					<IgnoreSceneLights>false</IgnoreSceneLights>
+				</Figure3D>
+			</Presentation>
+
+				</Level>
+			</Presentation>
+
+		</ActiveObjectClass>
 	</ActiveObjectClasses>	
 	<DifferentialEquationsMethod>EULER</DifferentialEquationsMethod>
 	<MixedEquationsMethod>RK45_NEWTON</MixedEquationsMethod>
@@ -5844,6 +6121,9 @@ if(root.size==1){
 				</Parameter>
 				<Parameter>
 					<ParameterName><![CDATA[disturbed_time]]></ParameterName>
+				</Parameter>
+				<Parameter>
+					<ParameterName><![CDATA[file_prefix]]></ParameterName>
 				</Parameter>
 			</Parameters>			
 			<PresentationProperties>
@@ -7356,6 +7636,9 @@ try {
 			<FreeformParamValue>	
 				<Id>1678539265794</Id>
 			</FreeformParamValue>
+			<FreeformParamValue>	
+				<Id>1681612328627</Id>
+			</FreeformParamValue>
 			<RangeVariationParamValue>	
 				<Id>1596099500018</Id>
 				<Type>FIXED</Type>
@@ -7464,6 +7747,10 @@ try {
 				<Id>1678539265794</Id>
 				<Type>FIXED</Type>
 			</RangeVariationParamValue>
+			<RangeVariationParamValue>	
+				<Id>1681612328627</Id>
+				<Type>FIXED</Type>
+			</RangeVariationParamValue>
 			<ModelTimeProperties>
 				<StopOption><![CDATA[Stop at specified time]]></StopOption>
 				<InitialDate><![CDATA[1646870400000]]></InitialDate>	
@@ -7488,6 +7775,68 @@ try {
 				<ExpressionForConfidenceComputation><![CDATA[0]]></ExpressionForConfidenceComputation>
 			</ReplicationsProperties>
 		</ParamVariationExperiment>	
+		<!--   =========  Custom Experiment   ========  -->
+		<CustomExperiment>
+			<Id>0</Id>
+			<Name><![CDATA[CustomExperiment]]></Name>
+			<MaximumMemory>512</MaximumMemory>
+			<CommandLineArguments><![CDATA[]]></CommandLineArguments>
+			<VmArgs><![CDATA[]]></VmArgs>
+			<Code><![CDATA[
+int[] swarm_size = new int[] {20, 50, 100, 200};
+double[] fail_proportion = new double[] {0.1, 0.2, 0.3, 0.5, 0.6, 0.7};
+
+swarm_size = new int[] {50};
+fail_proportion = new double[] {0.1};
+
+for(int i=0 ; i< swarm_size.length; i++){
+	for(int j =0; j<fail_proportion.length;j++ ){
+		// 创建引擎，初始化随机数发生器：
+		Engine engine = createEngine();
+		engine.setTimeUnit( SECOND );
+		// 随机种子（可重现的仿真运行）
+		engine.setDefaultRandomGenerator(new Random());
+		// 同时发生事件的选择模式:
+		engine.setSimultaneousEventsSelectionMode( Engine.EVENT_SELECTION_LIFO );
+		engine.setStartTime( 0.0 );
+		engine.setStartDate( toDate( 2022, MARCH, 10, 0, 0, 0 ) );
+		// 设置停止时间：
+		engine.setStopTime( 1000.0 );
+		// 创建新的根对象：
+		Main root = new Main( engine, null, null );
+		// TODO在这里设置根对象的参数
+		root.setParametersToDefaultValues();
+		// root.teamSize = 123;
+		// ...
+		// 为仿真准备引擎：
+		// 仿真过程的参数设置
+		root.teamSize = swarm_size[i] ;
+		root.fault_proportion = fail_proportion[j];
+		root.file_prefix = swarm_size[i]+"_"+fail_proportion[j]+"_";
+		
+		engine.start( root );
+		// 以快速模式启动仿真：
+		engine.runFast();
+		// TODO在这里处理仿真结果
+		// traceln( "uavs:" );
+		// traceln( inspectOf( root.uavs ) );
+		// ...
+		// 销毁模型：
+		engine.stop();
+	}
+}
+try {
+		//System.out.println("执行python脚本");
+	    String executer= "python";
+	    String file_path = "resilience_same_failure_rate1.py";
+	    
+	    String[] command_line = new String[] {executer, file_path};
+		int flag = Runtime.getRuntime().exec(command_line).waitFor();
+		//System.out.println("flag:"+flag);
+    } catch(Exception ex){
+    	 ex.printStackTrace(); 
+}]]></Code>
+		</CustomExperiment>
 	</Experiments>
 	<ModelResources>
 		<Resource>
@@ -7503,7 +7852,7 @@ try {
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 		</Resource>
 		<Resource>
-			<Path><![CDATA[shape_data.txt]]></Path>
+			<Path><![CDATA[3d/person.dae]]></Path>
 			<ReferencedFromUserCode>false</ReferencedFromUserCode>
 		</Resource>
 	</ModelResources>

@@ -1,5 +1,7 @@
 # coding: utf-8
 
+# main_new 不记得干啥了，先放着
+
 import math
 import os
 
@@ -191,7 +193,10 @@ plt.legend()
 plt.xlabel("steps")
 plt.ylabel("velocity")
 
-"""
+
+################################################
+
+# 图中标注功能
 #标出故障发生的时刻
 plt.annotate(
     "failure start ",
@@ -201,7 +206,6 @@ plt.annotate(
     color="b",
     arrowprops=dict(arrowstyle="->", connectionstyle="arc3", color="black"),
 )
-
 
 # 标出性能最低点和稳态时间点
 plt.annotate(
@@ -220,11 +224,11 @@ plt.annotate(
     color="b",
     arrowprops=dict(arrowstyle="->", lw=2, connectionstyle="arc3", color="red"),
 )
-
 # 设置最低水平，蓝色线表示稳定值，红色线条表示稳定值
 plt.axhline(y=min_value, c="r", ls="-.", lw=1)
 plt.axhline(y=y_r, c="b", ls="-.", lw=1)
+
+
 plt.show()
 # plt.pause(0.1)
 plt.title("Interference data")
-"""

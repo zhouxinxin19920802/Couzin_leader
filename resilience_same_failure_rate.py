@@ -6,13 +6,13 @@ import math
 import os
 
 
-#  参数读取
+#  参数读取，这个after是想指故障发生后的数据
 def data_read(shape_data, data):
     data_shape_after = []
     for line in open(shape_data, "r", encoding="utf-8"):
         line = line.strip("\n")
         data_shape_after.append(float(line))
-
+    # 获取系统稳态时间
     times_stable = 0
     with open(data, "r", encoding="utf-8") as f:
         lines = f.readlines()
@@ -24,16 +24,16 @@ def data_read(shape_data, data):
 
 
 data_resilience20, data_resilience_sg20 = data_read(
-    "./仿真数据/不同尺寸下的数据/60%/20/shape_data.txt", "./仿真数据/不同尺寸下的数据/60%/20" "/data.txt"
+    "./仿真数据/不同尺寸下的数据/60%/20/shape_data.txt", "./仿真数据/不同尺寸下的数据/60%/20/data.txt"
 )
 data_resilience50, data_resilience_sg50 = data_read(
-    "./仿真数据/不同尺寸下的数据/60%/50/shape_data.txt", "./仿真数据/不同尺寸下的数据/60%/50" "/data.txt"
+    "./仿真数据/不同尺寸下的数据/60%/50/shape_data.txt", "./仿真数据/不同尺寸下的数据/60%/50/data.txt"
 )
 data_resilience100, data_resilience_sg100 = data_read(
-    "./仿真数据/不同尺寸下的数据/60%/100/shape_data.txt", "./仿真数据/不同尺寸下的数据/60%/100" "/data.txt"
+    "./仿真数据/不同尺寸下的数据/60%/100/shape_data.txt", "./仿真数据/不同尺寸下的数据/60%/100/data.txt"
 )
 data_resilience200, data_resilience_sg200 = data_read(
-    "./仿真数据/不同尺寸下的数据/60%/200/shape_data.txt", "./仿真数据/不同尺寸下的数据/60%/200" "/data.txt"
+    "./仿真数据/不同尺寸下的数据/60%/200/shape_data.txt", "./仿真数据/不同尺寸下的数据/60%/200/data.txt"
 )
 
 
