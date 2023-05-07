@@ -525,3 +525,66 @@ print(
 R_10 = alpha * delta_d_10 * sigma_d_10 * rho_d_10 + (1 - alpha) * delta_r_10 * sigma_r_10 * rho_r_10
 print("R_value_10:{}".format(R_10))
 
+# Case11
+t_ss11, min_var11 = tm.calculate(t_case2, y_t11)
+# 毁伤前稳态时间
+t_ss11_reverse, min_var11_reverse = tm.calculate(t_case2_reverse, y_t11_reverse)
+
+# 抵抗期间的参数
+# x1_short和x2_shrot,需要改成x1_long和x2_long，另外积分的范围也得改变，前部分改为0-100，后半部分改成100-200
+delta_d_11 = integrate.quad(lambda x: (A1 + (k1 - A1) / (1 + np.exp(B1_case11 * (x - x1_long)))), 0, 100)[0] / (100 * 50)
+sigma_d_11 = 20 / 50
+# 抵抗阶段B放在前面，时间拉长了，时间需要更改，50需要改成100
+rho_d_11 = math.pow(omega, B / (100 - t_ss11_reverse))
+
+# 恢复期间参数,这个k2_case4是恢复后的稳定水平需要修改，同样50-100，需要改成100-200, x2_short需要改成x2_long
+delta_r_11 = integrate.quad(lambda x: A2 + (k2_case11 - A2) / (1 + np.exp(B2_case11 * (x - x2_long))), 100, 200)[0] / (
+    100 * 50
+)
+
+# 在每个案例中需要修改
+sigma_r_11 = k2_case11 / 50
+# 恢复阶段B放在后面,时间由50改为100
+rho_r_11 = math.pow(omega, (t_ss11 - 100) / B)
+
+print(
+    "delta_d_11:{},sigma_d_11:{},rho_d_11:{},---,delta_r_11:{},sigma_r_11:{},rho_r_11:{}".format(
+        delta_d_11, sigma_d_11, rho_d_11, delta_r_11, sigma_r_11, rho_r_11
+    )
+)
+
+# 韧性R
+R_11 = alpha * delta_d_11 * sigma_d_11 * rho_d_11 + (1 - alpha) * delta_r_11 * sigma_r_11 * rho_r_11
+print("R_value_11:{}".format(R_11))
+
+# Case12
+t_ss12, min_var12 = tm.calculate(t_case2, y_t12)
+# 毁伤前稳态时间
+t_ss12_reverse, min_var12_reverse = tm.calculate(t_case2_reverse, y_t12_reverse)
+
+# 抵抗期间的参数
+# x1_short和x2_shrot,需要改成x1_long和x2_long，另外积分的范围也得改变，前部分改为0-100，后半部分改成100-200
+delta_d_12 = integrate.quad(lambda x: (A1 + (k1 - A1) / (1 + np.exp(B1_case12 * (x - x1_long)))), 0, 100)[0] / (100 * 50)
+sigma_d_12 = 20 / 50
+# 抵抗阶段B放在前面，时间拉长了，时间需要更改，50需要改成100
+rho_d_12 = math.pow(omega, B / (100 - t_ss12_reverse))
+
+# 恢复期间参数,这个k2_case4是恢复后的稳定水平需要修改，同样50-100，需要改成100-200, x2_short需要改成x2_long
+delta_r_12 = integrate.quad(lambda x: A2 + (k2_case12 - A2) / (1 + np.exp(B2_case12 * (x - x2_long))), 100, 200)[0] / (
+    100 * 50
+)
+
+# 在每个案例中需要修改
+sigma_r_12 = k2_case12 / 50
+# 恢复阶段B放在后面,时间由50改为100
+rho_r_12 = math.pow(omega, (t_ss12 - 100) / B)
+
+print(
+    "delta_d_12:{},sigma_d_12:{},rho_d_12:{},---,delta_r_12:{},sigma_r_12:{},rho_r_12:{}".format(
+        delta_d_12, sigma_d_12, rho_d_12, delta_r_12, sigma_r_12, rho_r_12
+    )
+)
+
+# 韧性R
+R_12 = alpha * delta_d_12 * sigma_d_12 * rho_d_12 + (1 - alpha) * delta_r_12 * sigma_r_12 * rho_r_12
+print("R_value_12:{}".format(R_12))
