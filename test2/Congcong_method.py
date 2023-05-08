@@ -201,7 +201,7 @@ y_o = 50
 
 # Case 1
 # 恢复的稳态值时间
-t_ss1, min_var1 = tm.calculate(t_case1, y_t2)
+t_ss1, min_var1 = tm.calculate(t_case1, y_t1)
 # 毁伤前稳态时间
 t_ss1_reverse, min_var1_reverse = tm.calculate(t_case1_reverse, y_t1_reverse)
 
