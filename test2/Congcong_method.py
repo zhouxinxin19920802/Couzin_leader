@@ -211,6 +211,7 @@ sigma_d_1 = 20 / 50
 # 抵抗阶段B放在前面
 rho_d_1 = math.pow(omega, B / (50 - t_ss1_reverse))
 
+
 # 恢复期间参数
 delta_r_1 = integrate.quad(lambda x: A2 + (k2_case1 - A2) / (1 + np.exp(B2_case1 * (x - x2_short))), 50, 100)[0] / (
     50 * 50
@@ -221,11 +222,15 @@ sigma_r_1 = 25 / 50
 # 恢复阶段B放在后面
 rho_r_1 = math.pow(omega, (t_ss1 - 50) / B)
 
+# 前后的稳态时间
+print("t_ss1_reverse:{},t_ss1:{}".format(t_ss1_reverse, t_ss1))
+
 print(
     "delta_d_1:{},sigma_d_1:{},rho_d_1:{},---,delta_r_1:{},sigma_r_1:{},rho_r_1:{}".format(
         delta_d_1, sigma_d_1, rho_d_1, delta_r_1, sigma_r_1, rho_r_1
     )
 )
+
 
 # 韧性R
 R_1 = alpha * delta_d_1 * sigma_d_1 * rho_d_1 + (1 - alpha) * delta_r_1 * sigma_r_1 * rho_r_1
@@ -384,6 +389,7 @@ sigma_r_6 = k2_case6 / 50
 # 恢复阶段B放在后面
 rho_r_6 = math.pow(omega, (t_ss6 - 50) / B)
 
+
 print(
     "delta_d_6:{},sigma_d_6:{},rho_d_6:{},---,delta_r_6:{},sigma_r_6:{},rho_r_6:{}".format(
         delta_d_6, sigma_d_6, rho_d_6, delta_r_6, sigma_r_6, rho_r_6
@@ -418,6 +424,11 @@ delta_r_7 = integrate.quad(lambda x: A2 + (k2_case7 - A2) / (1 + np.exp(B2_case7
 sigma_r_7 = k2_case7 / 50
 # 恢复阶段B放在后面,时间由50改为100
 rho_r_7 = math.pow(omega, (t_ss7 - 100) / B)
+
+
+
+# 前后的稳态时间
+print("t_ss7_reverse:{},t_ss7:{}".format(t_ss7_reverse, t_ss7))
 
 print(
     "delta_d_7:{},sigma_d_7:{},rho_d_7:{},---,delta_r_7:{},sigma_r_7:{},rho_r_7:{}".format(
@@ -500,7 +511,9 @@ t_ss10_reverse, min_var10_reverse = tm.calculate(t_case2_reverse, y_t10_reverse)
 
 # 抵抗期间的参数
 # x1_short和x2_shrot,需要改成x1_long和x2_long，另外积分的范围也得改变，前部分改为0-100，后半部分改成100-200
-delta_d_10 = integrate.quad(lambda x: (A1 + (k1 - A1) / (1 + np.exp(B1_case10 * (x - x1_long)))), 0, 100)[0] / (100 * 50)
+delta_d_10 = integrate.quad(lambda x: (A1 + (k1 - A1) / (1 + np.exp(B1_case10 * (x - x1_long)))), 0, 100)[0] / (
+    100 * 50
+)
 sigma_d_10 = 20 / 50
 # 抵抗阶段B放在前面，时间拉长了，时间需要更改，50需要改成100
 rho_d_10 = math.pow(omega, B / (100 - t_ss10_reverse))
@@ -532,7 +545,9 @@ t_ss11_reverse, min_var11_reverse = tm.calculate(t_case2_reverse, y_t11_reverse)
 
 # 抵抗期间的参数
 # x1_short和x2_shrot,需要改成x1_long和x2_long，另外积分的范围也得改变，前部分改为0-100，后半部分改成100-200
-delta_d_11 = integrate.quad(lambda x: (A1 + (k1 - A1) / (1 + np.exp(B1_case11 * (x - x1_long)))), 0, 100)[0] / (100 * 50)
+delta_d_11 = integrate.quad(lambda x: (A1 + (k1 - A1) / (1 + np.exp(B1_case11 * (x - x1_long)))), 0, 100)[0] / (
+    100 * 50
+)
 sigma_d_11 = 20 / 50
 # 抵抗阶段B放在前面，时间拉长了，时间需要更改，50需要改成100
 rho_d_11 = math.pow(omega, B / (100 - t_ss11_reverse))
@@ -564,7 +579,9 @@ t_ss12_reverse, min_var12_reverse = tm.calculate(t_case2_reverse, y_t12_reverse)
 
 # 抵抗期间的参数
 # x1_short和x2_shrot,需要改成x1_long和x2_long，另外积分的范围也得改变，前部分改为0-100，后半部分改成100-200
-delta_d_12 = integrate.quad(lambda x: (A1 + (k1 - A1) / (1 + np.exp(B1_case12 * (x - x1_long)))), 0, 100)[0] / (100 * 50)
+delta_d_12 = integrate.quad(lambda x: (A1 + (k1 - A1) / (1 + np.exp(B1_case12 * (x - x1_long)))), 0, 100)[0] / (
+    100 * 50
+)
 sigma_d_12 = 20 / 50
 # 抵抗阶段B放在前面，时间拉长了，时间需要更改，50需要改成100
 rho_d_12 = math.pow(omega, B / (100 - t_ss12_reverse))
