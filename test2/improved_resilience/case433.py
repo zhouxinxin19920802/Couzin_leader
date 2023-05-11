@@ -56,7 +56,27 @@ def calculate_fluctuation(smooth_data_before, smooth_data_after):
 y1_sg = sg(y1, window_length=25, polyorder=1)
 
 # 波动因子
-
 zeta = calculate_fluctuation(y1, y1_sg)
-
 print(zeta)
+
+# Case2
+
+x2_before = np.arange(0, 30, step)
+x2_resist = np.arange(30, 80, step)
+x2_after = np.arange(80, 100 ,step)
+
+y2_before = 50 * x2_before
+y2_resist = (-29/45)*x2_resist + 3120/4
+y2_after = 3120 - 29
+
+# X 轴的合并
+x2 = np.append(x2_before, x2_resist)
+x2 = np.append(x2,x2_after)
+
+# y轴合并
+y2 = np.append(y2_before, y2_resist)
+y2 = np.append(y2_after, y2)
+
+y2_sg = sg(y2, window_length=25, polyorder=1)
+zeta2 = calculate_fluctuation(y2, y2_sg)
+print("zeta2:{}".format(zeta2))

@@ -1,7 +1,5 @@
 # coding: utf-8
 
-# main_new 不记得干啥了，先放着
-
 import math
 import os
 
@@ -65,6 +63,9 @@ with open("data.txt", "r", encoding="utf-8") as f:
 # 韧性值初始为0
 r = 0
 
+data_resilience = []
+data_resilience_sg = []
+time_period_before_disturblance = 0
 if lines_in_data == 2:
     times_stable = int(float(times_stable))
 
@@ -75,15 +76,15 @@ if lines_in_data == 2:
     time_period = 300
 
     # 获取的时间段为故障前(time_period_before_disturblance)个step到稳态后的(time_period)个时间段
-    data_resilience = data[times_start: times_stable + time_period]
+    data_resilience = data[times_start : times_stable + time_period]
 
     # sg滤波 window_length: 窗口长度，该值为正奇数，polyorder越大越平滑
     # window_length值越小，则曲线越贴近真实曲线
     # polyorder: 用于拟合样本的多项式的阶数
     data_resilience_sg = sg(data_resilience, window_length=25, polyorder=1)
-    data_after_destroy = data_resilience_sg[times_stable - times_start: times_stable - times_start + time_period]
+    data_after_destroy = data_resilience_sg[times_stable - times_start : times_stable - times_start + time_period]
 
-    # 获取最小值
+    # 获取最小值，这个最小值的区间为故障发生到稳态时刻
     id, min_value = get_min(data_resilience_sg[time_period_before_disturblance:-time_period])
     if min_value < 0:
         min_value = 0
@@ -185,8 +186,8 @@ f.close()
 print("resilience_value:", r)
 
 
-# print(delta_l ** (len(data_resilience) / B))
 
+"""
 plt.plot(data_resilience, label="raw")
 plt.plot(data_resilience_sg, color="r", ls="--", label="smoothed")
 plt.legend()
@@ -197,7 +198,7 @@ plt.ylabel("velocity")
 ################################################
 
 # 图中标注功能
-#标出故障发生的时刻
+# 标出故障发生的时刻，因为data_resilience是从故障前100算的，所以此种计算方式没错
 plt.annotate(
     "failure start ",
     xy=(time_period_before_disturblance + 2, data_resilience_sg[time_period_before_disturblance]),
@@ -232,3 +233,4 @@ plt.axhline(y=y_r, c="b", ls="-.", lw=1)
 plt.show()
 # plt.pause(0.1)
 plt.title("Interference data")
+"""

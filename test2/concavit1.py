@@ -3,6 +3,26 @@ import numpy as np
 from matplotlib import pyplot as plt
 import math
 
+def calculate_fluctuation(smooth_data_before, smooth_data_after):
+    """
+    此函数主要作用为计算波动因子。
+
+    Args:
+        smooth_data_before(list) : 滤波前的数据
+        smooth_data_after(list) : 滤波后的数据
+    Return:
+        波动因子
+    """
+    p_s = 0
+    # 平滑前和平滑后数据差的平方和
+    p_n = 0
+    for item in smooth_data_after:
+        p_s = p_s + item**2
+    for i in range(len(smooth_data_after)):
+        p_n = p_n + (smooth_data_before[i] - smooth_data_after[i]) ** 2
+    snr_db = 10 * math.log((p_s / p_n), 10)
+    zeta = 1 / (1 + math.exp(-0.25 * (snr_db - 15)))
+    return zeta
 
 step = 0.001
 
@@ -68,7 +88,25 @@ y3 = np.append(y3_before, y3_resist)
 y3 = np.append(y3, y3_recover)
 y3 = np.append(y3, y3_after)
 
+# 波动因子的计算
+# 导入滤波函数
+from scipy.signal import savgol_filter as sg
 
+# case1的波动因子
+y1_sg = sg(y1, window_length=25, polyorder=2)
+zeta1 = calculate_fluctuation(y1, y1_sg)
+
+# case2的波动因子
+y2_sg = sg(y2, window_length=25, polyorder=2)
+zeta2 = calculate_fluctuation(y2, y2_sg)
+
+# case3的波动因子
+y3_sg = sg(y3, window_length=25, polyorder=2)
+zeta3 = calculate_fluctuation(y3, y3_sg)
+
+
+print("zeta1:{},zeta2:{},zeta3:{}".format(zeta1, zeta2, zeta3))
+print("##############################")
 # 积分计算求聪聪师兄韧性
 from scipy import integrate
 
@@ -96,7 +134,7 @@ delta1_r = integrate.quad(lambda x: 1 + pow(x - 2, 2), 2, 3)[0] / integrate.quad
 sigma1_r = 2 / 2
 # 抗毁时间因子
 rho1_r = math.pow(a, 1 / B)
-print(delta1_d,sigma1_d, rho1_d,delta1_r, sigma1_r, rho1_r)
+print(delta1_d, sigma1_d, rho1_d, delta1_r, sigma1_r, rho1_r)
 print("case1:%s" % str(alpha_factor * delta1_d * sigma1_d * rho1_d + beta_factor * delta1_r * sigma1_r * rho1_r))
 #
 # ########################################################################################
@@ -114,7 +152,7 @@ delta2_r = integrate.quad(lambda x: x - 1, 2, 3)[0] / integrate.quad(lambda x: 2
 sigma2_r = 2 / 2
 # 抗毁时间因子
 rho2_r = math.pow(a, 1 / B)
-print(delta2_d,sigma2_d, rho2_d,delta2_r, sigma2_r, rho2_r)
+print(delta2_d, sigma2_d, rho2_d, delta2_r, sigma2_r, rho2_r)
 print("case2:", str(alpha_factor * delta2_d * sigma2_d * rho2_d + beta_factor * delta2_r * sigma2_r * rho2_r))
 # ########################################################################################
 # # case2:韧性
@@ -132,7 +170,7 @@ sigma3_r = 2 / 2
 # 抗毁时间因子
 rho3_r = math.pow(a, 1 / B)
 delta3_d = integrate.quad(lambda x: 1 + pow(x - 2, 2), 1, 2)[0] / integrate.quad(lambda x: 2, 1, 2)[0]
-print(delta3_d,sigma3_d, rho3_d,delta3_r, sigma3_r, rho3_r)
+print(delta3_d, sigma3_d, rho3_d, delta3_r, sigma3_r, rho3_r)
 print("case3:", str(alpha_factor * delta3_d * sigma3_d * rho3_d + beta_factor * delta3_r * sigma3_r * rho3_r))
 
 # # Tran方法韧性
